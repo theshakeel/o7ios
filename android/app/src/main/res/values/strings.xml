@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">o7events</string>
+    <string name="title_activity_main">o7events</string>
+    <string name="package_name">com.o7events.app</string>
+    <string name="custom_url_scheme">com.o7events.app</string>
+</resources>

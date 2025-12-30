@@ -1,0 +1,55 @@
+ import React, { useEffect, useRef, useState } from "react";
+ import { Box, CircularProgress, Skeleton, Typography, InputBase, MenuItem, Select, IconButton } from "@mui/material";
+ import { useDispatch, useSelector } from "react-redux";
+ import { useNavigate } from "react-router-dom";
+   
+ import InfiniteScroll from "react-infinite-scroll-component";
+ import ProductSkeleton from "../../components/ProductSkeleton";
+ import { CustomCard, CustomCarousel, EventsByCategory } from "../../components";
+ import { getCountryCategoryEvents } from "../../services/data/events";
+ import { selectCategories } from "../../store/slice/categories";
+ import { selectEventsData } from "../../store/slice/events";
+ import { selectLoading } from "../../store/slice/loading";
+ import { selectUser } from "../../store/slice/user";
+ import { handleCategorySelect } from "../../utils";
+ import { Style } from "./style";
+ import SearchIcon from "@mui/icons-material/Search";
+ const Home = () => { const dispatch = useDispatch();
+   const navigate = useNavigate();
+   const scrollAbleDivRef = useRef(null);
+   const { next_page_url, current_page, data, searchKey } = useSelector( selectEventsData );
+ // const { loader } = useSelector(selectLoading);
+//  const user = useSelector(selectUser);
+//  const categories = useSelector(selectCategories);
+//  const { language, countryId, category } = useSelector(selectUser);
+//  const [eventsData, setEventsData] = useState(data);
+//  const [hasMore, setHasMore] = useState(!!next_page_url);
+//  const [nextPage, setNextPage] = useState(current_page + 1);
+//  const [isEndReach, setIsEndReach] = useState(false);
+//  const [eventsGrouped, setEventsGrouped] = useState({});
+//  const [search, setSearch] = useState("");
+//  const [categoryId, setCategoryId] = useState("");
+//  let skeletonArray = new Array(8);
+//  const fetchMoreData = async () => { try { const events = await getCountryCategoryEvents({ page: nextPage, number: 12, country: countryId, category: category?.id, searchKey, });
+//  setEventsData((prev) => [...prev, ...events.data.data.data]);
+//  setHasMore(!!events.data.data.next_page_url);
+//  setNextPage((prev) => prev + 1);
+//  setIsEndReach(false);
+//  } catch (err) { console.error(err);
+//  } };
+//  useEffect(() => { setEventsData(data);
+//  setNextPage(current_page + 1);
+//  setHasMore(!!next_page_url);
+//  }, [data, current_page, next_page_url]);
+//  const isArabic = language === "ar";
+//  // Handle search submission const handleSearchSubmit = () => { const params = new URLSearchParams();
+//  if (search) params.set("q", search);
+//  if (categoryId) params.set("category", categoryId);
+//  navigate(/search?${params.toString()});
+//  };
+//  return ( <Box sx={Style.main}> 
+// <CustomCarousel /> 
+// {/* Search Bar Section */} 
+// <Box sx={{ background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255, 186, 131, 0.2)', borderRadius: 4, p: 0.5, mt: 2, my: 2, boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)', display: 'flex', alignItems: 'stretch', gap: 0, flexDirection: isArabic ? 'row-reverse' : 'row', transition: 'all 0.3s ease', '&:focus-within': { borderColor: '#FFBA83', boxShadow: '0 0 0 3px rgba(255, 186, 131, 0.2), 0 8px 32px rgba(0, 0, 0, 0.3)', } }}> {/* Search Input - 50% */} <InputBase placeholder="Discover amazing events..." value={search} onChange={(e) => setSearch(e.target.value)} sx={{ flex: '1 1 50%', background: 'transparent', px: 2.5, py: 1.5, color: 'white !important', fontSize: '1rem', fontWeight: 400, borderRadius: isArabic ? '0 12px 12px 0' : '12px 0 0 12px', transition: 'all 0.3s ease', '& .MuiInputBase-input': { padding: 0, '&::placeholder': { color: 'rgba(255, 255, 255, 0.6) ', opacity: 1, fontStyle: 'italic' } }, '&:hover': { background: 'rgba(255, 255, 255, 0.05)', } }} /> {/* Divider */} <Box sx={{ width: '1px', background: 'rgba(255, 186, 131, 0.3)', alignSelf: 'stretch', my: 0.5 }} /> {/* Category Selector - ~30% */} <Select value={categoryId} onChange={(e) => setCategoryId(e.target.value)} displayEmpty sx={{ flex: '1 1 30%', background: 'transparent', color: 'white !important', minHeight: 48, borderRadius: 0, '& .MuiSelect-select': { py: 1.5, px: 2, fontSize: '0.9rem', fontWeight: 500, display: 'flex', alignItems: 'center', minHeight: 'auto', borderRadius: 0 }, '& .MuiOutlinedInput-notchedOutline': { border: 'none', }, '& .MuiSelect-icon': { color: 'rgba(255, 186, 131, 0.8)', fontSize: '1.1rem' }, '&:hover': { background: 'rgba(255, 255, 255, 0.05)', } }} > <MenuItem value="" sx={{ color: 'rgba(0, 0, 0, 0.7)', fontSize: '0.9rem', fontWeight: 500 }} > 🏷️ All </MenuItem> {categories.map((cat) => ( <MenuItem key={cat.id} value={cat.id} sx={{ color: 'rgba(0, 0, 0, 0.7)', fontSize: '0.9rem', fontWeight: 500 }} > {cat.translation[language]?.name} </MenuItem> ))} </Select> {/* Divider */} <Box sx={{ width: '1px', background: 'rgba(255, 186, 131, 0.3)', alignSelf: 'stretch', my: 0.5 }} /> {/* Search Button - ~20% */} <IconButton onClick={handleSearchSubmit} sx={{ flex: '0 0 auto', background: 'linear-gradient(135deg, #FFBA83 0%, #ff9f5a 100%)', borderRadius: isArabic ? '12px 0 0 12px' : '0 12px 12px 0', px: 2, py: 1.5, minWidth: 56, minHeight: 48, boxShadow: 'none', transition: 'all 0.3s ease', '&:hover': { background: 'linear-gradient(135deg, #ff9f5a 0%, #FFBA83 100%)', transform: 'scale(1.02)', }, '&:active': { transform: 'scale(0.98)' } }} > <SearchIcon sx={{ color: 'white !important', fontSize: 22, filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))' }} /> </IconButton> </Box> {(!eventsData || eventsData.length === 0) ? ( <ProductSkeleton /> ) : ( <EventsByCategory eventsData={eventsData} skeletonArray={skeletonArray} language={language} /> )} </Box> );
+//  };
+//  export default Home;

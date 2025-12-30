@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "556471325234",
+    "project_id": "dev-project-f510a",
+    "storage_bucket": "dev-project-f510a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556471325234:android:92984997c99fc7f76b622b",
+        "android_client_info": {
+          "package_name": "com.o7events.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBte876zvZRJ7PukDC0_o-YYaJZy2GVQjI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

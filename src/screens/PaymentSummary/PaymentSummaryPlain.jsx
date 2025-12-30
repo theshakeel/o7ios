@@ -1,0 +1,335 @@
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CircleIcon from "@mui/icons-material/Circle";
+import {
+  Box,
+  Typography,
+  Input,
+  IconButton,
+  InputAdornment,
+} from "@mui/material";
+import DoneIcon from "@mui/icons-material/Done";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { CustomButton } from "../../components";
+import CustomDivider from "../../components/CustomDivider";
+import { checkout, checkDiscount } from "../../services/checkout";
+import { selectUser } from "../../store/slice/user";
+import { IMAGES } from "../../theme";
+import { Style } from "./style";
+import toast from "react-hot-toast";
+import { currencyJson } from "../../lib/helper";
+import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
+// import mixpanel from "mixpanel-browser";
+
+const PaymentSummaryPlain = ({ eventSlug, couponValue: initialCoupon }) => {
+  const { t } = useTranslation();
+  const user = useSelector(selectUser);
+  const paymentMethods = [
+    {
+      name: t("payment_summary_page.credit_card"),
+      width: "70px",
+      height: "16px",
+      method: "card",
+      image: IMAGES.visa,
+      id: 1,
+    },
+    {
+      name: t("payment_summary_page.knet"),
+      width: "30px",
+      height: "24px",
+      method: "knet",
+      image: IMAGES.knet,
+      id: 2,
+    },
+    {
+      name: t("payment_summary_page.google_pay"),
+      width: "60px",
+      height: "40px",
+      method: "google_apple_pay",
+      image: IMAGES.googlePay,
+      id: 3,
+    },
+    {
+      name: t("payment_summary_page.apple_pay"),
+      width: "60px",
+      height: "40px",
+      method: "google_apple_pay",
+      image: IMAGES.applePay,
+      id: 4,
+    },
+  ];
+
+  const [select, setSelect] = useState({ method: "card", id: 1 });
+  const [timer, setTimer] = useState("");
+  const [loader, setLoader] = useState(false);
+  const [discountLoader, setDiscountLoader] = useState(false);
+  const [validCoupon, setValidCoupon] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [couponValue, setCoupon] = useState(initialCoupon ?? "");
+  const [discountError, setDiscountError] = useState("");
+  const { language, token } = useSelector(selectUser);
+  const navigate = useNavigate();
+  let timeout;
+
+  const isArabic = language === "ar";
+
+  // useEffect(() => {
+  //   mixpanel?.track("payment-summary", {
+  //     email: user?.email,
+  //     name: user?.name || "anonymous",
+  //   });
+  // }, []);
+
+  const startTimer = (durationInSeconds) => {
+    let remainingTime = durationInSeconds;
+
+    function updateTimer() {
+      const minutes = Math.floor(remainingTime / 60);
+      const seconds = remainingTime % 60;
+
+      setTimer(`${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`);
+
+      if (remainingTime > 0) {
+        remainingTime--;
+        timeout = setTimeout(updateTimer, 1000);
+      } else {
+        clearTimeout(timeout);
+        navigate(-1);
+      }
+    }
+
+    updateTimer();
+  };
+
+  const handleCheckout = async () => {
+    if (couponValue && !validCoupon) {
+      setIsSubmit(true);
+      return;
+    }
+
+    setLoader(true);
+
+    try {
+      const { data } = await checkout(
+        {
+          event: eventSlug?.data?.id,
+          tickets: eventSlug?.ticketsData,
+          payment_method: select.method,
+          coupon: couponValue,
+        },
+        token
+      );
+      toast.success("Redirecting...");
+      window.open(data?.link, "_self");
+    } catch (err) {
+      console.error(err);
+      navigate("/order-failure");
+    } finally {
+      setLoader(false);
+      setIsSubmit(false);
+    }
+  };
+
+  const handleCheckDiscount = async () => {
+    setIsSubmit(false);
+    if (couponValue) {
+      setDiscountLoader(true);
+      await checkDiscount(
+        {
+          event: eventSlug?.data?.id,
+          tickets: eventSlug?.ticketsData,
+          coupon: couponValue,
+        },
+        token
+      )
+        .then(() => {
+          setValidCoupon(true);
+          setDiscountLoader(false);
+        })
+        .catch(({ response }) => {
+          setValidCoupon(false);
+          setDiscountLoader(false);
+          setDiscountError(
+            response?.data?.message?.coupon?.[0] ?? response?.data?.message
+          );
+        });
+    }
+  };
+
+  const onHandleChange = (e) => {
+    setCoupon(e?.target?.value?.trim());
+    setDiscountError(false);
+    setIsSubmit(false);
+    setValidCoupon(false);
+  };
+
+  let totalQuantity = 0;
+  eventSlug?.ticketsData?.forEach((item) => {
+    totalQuantity += item.quantity;
+  });
+
+  return (
+    <Box sx={Style.checkOutModal}>
+      {/* Header, Timer, and Payment Summary */}
+      <Typography
+        sx={{
+          position: "relative",
+          width: "calc(100% - 40px)",
+          maxWidth: "470px",
+          display: { xs: "flex", md: "none" },
+          alignItems: "center",
+          justifyContent: "center",
+          position: "absolute",
+          top: "0px",
+          color: "#fff",
+          m: "40px 0 20px",
+        }}
+      >
+        <Typography component={"span"} sx={{ position: "absolute", left: 0 }}>
+          <ArrowBackIcon onClick={() => navigate("/")} style={{ ...Style.icon, fontSize: "30px" }} />
+        </Typography>
+        <Typography component={"span"} sx={Style.checkOutHeading(isArabic)}>
+          {t("buy_ticket_modal.checkout")}
+        </Typography>
+      </Typography>
+
+      <Box sx={Style.timerBox}>
+        <Typography sx={Style.timerPara(isArabic)}>
+          {t("payment_summary_page.please_complete")}
+        </Typography>
+        <Typography sx={Style.timerTime(isArabic)}>{timer}</Typography>
+      </Box>
+
+      {/* Payment Details */}
+      <Box sx={Style.paymentBox}>
+        <Box sx={Style.grayBox}>
+          <Typography sx={Style.paymentHead(isArabic)}>
+            {t("payment_summary_page.payment_summary")}
+          </Typography>
+
+          <Box sx={Style.paymentChildBox(isArabic)}>
+            <Typography sx={Style.paymentChildHead(isArabic)}>
+              {t("payment_summary_page.event")}
+            </Typography>
+            <Box sx={Style.locationBox}>
+              <Typography sx={Style.paymentChildInfo(isArabic)}>
+                {eventSlug?.data?.translation?.[language]?.name}
+              </Typography>
+              <Typography sx={Style.paymentChildTime(isArabic)}>
+                {dayjs(eventSlug?.data?.event_date)?.format("DD/MM/YYYY")},{" "}
+                {dayjs(eventSlug?.data?.event_time, "HH:mm:ss").format("h:mm A")}
+              </Typography>
+            </Box>
+          </Box>
+
+          <CustomDivider sx={Style.divider} />
+
+          <Box sx={Style.paymentChildBox(isArabic)}>
+            <Typography sx={Style.paymentChildHead(isArabic)}>
+              {t("payment_summary_page.ticket_no")}
+            </Typography>
+            <Typography sx={Style.paymentChildInfo(isArabic)}>{totalQuantity}</Typography>
+          </Box>
+
+          <CustomDivider sx={Style.divider} />
+
+          <Box sx={Style.paymentChildBox(isArabic)}>
+            <Typography sx={Style.paymentChildHead(isArabic)}>
+              {t("payment_summary_page.amount")}
+            </Typography>
+            <Typography component={"span"} sx={Style.paymentAmountBox(isArabic)}>
+              <Typography sx={Style.paymentAmount(isArabic)}>{eventSlug?.totalPrice}</Typography>{" "}
+              {currencyJson?.[eventSlug?.data?.tickets?.[0]?.currency]?.[language]}
+            </Typography>
+          </Box>
+
+          <Box sx={Style.paymentChildBox(isArabic)}>
+            <Typography sx={Style.paymentChildHead(isArabic)}>
+              {t("payment_summary_page.amount_fees")}
+            </Typography>
+            <Typography component={"span"} sx={Style.paymentAmountBox(isArabic)}>
+              <Typography sx={Style.paymentAmount(isArabic)}>{eventSlug?.data.process_fees}</Typography>{" "}
+              {currencyJson?.[eventSlug?.data?.tickets?.[0]?.currency]?.[language]}
+            </Typography>
+          </Box>
+        </Box>
+
+        {/* Payment Method Selection */}
+        <Box sx={Style.selectBox(isArabic)}>
+          <Typography sx={Style.Heading(isArabic)}>
+            {t("payment_summary_page.select_payment")}
+          </Typography>
+
+          {paymentMethods.map((val) => (
+            <Box
+              key={val.id}
+              sx={select.id === val.id ? Style.selectOrangeBoxFlex(isArabic) : Style.selectGrayBox(isArabic)}
+              onClick={() => setSelect({ method: val.method, id: val.id })}
+            >
+              <Box sx={Style.flex(isArabic)}>
+                {select.id === val.id ? (
+                  <CheckCircleIcon style={Style.orangeIcon} />
+                ) : (
+                  <CircleIcon style={Style.grayIcon} />
+                )}
+                <Typography sx={{ fontFamily: isArabic ? "Cairo, sans-serif" : "Inter" }}>{val.name}</Typography>
+              </Box>
+              <Box component={"img"} src={val.image} height={val.height} width={val.width} style={{ objectFit: "contain" }} />
+            </Box>
+          ))}
+
+          {/* Discount / Coupon */}
+          <Typography sx={Style.Heading(isArabic)}>{t("payment_summary_page.discount_code_coupon")}</Typography>
+          <Box sx={Style.discount(isArabic)}>
+            <Input
+              id="input-with-icon-adornment"
+              sx={Style.discountInput(isArabic)}
+              onChange={onHandleChange}
+              value={couponValue}
+              endAdornment={
+                <InputAdornment>
+                  <IconButton>
+                    <DoneIcon color={validCoupon ? "success" : "disabled"} />
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+            <CustomButton
+              onClick={handleCheckDiscount}
+              sx={Style.discountButton(isArabic)}
+              color={"secondary"}
+              buttonText={t("payment_summary_page.apply")}
+              loading={discountLoader}
+              disable={discountLoader}
+            />
+          </Box>
+
+          {((isSubmit && !validCoupon) || discountError) && (
+            <Typography sx={Style.discountMessage(isArabic)}>
+              {discountError ? discountError : t("payment_summary_page.discountMessage")}
+            </Typography>
+          )}
+
+          <Typography sx={Style.confirm(isArabic)}>
+            {t("payment_summary_page.by_tapping")}
+          </Typography>
+          <Typography sx={Style.terms(isArabic)}>{t("payment_summary_page.terms_condition")}</Typography>
+
+          <CustomButton
+            onClick={handleCheckout}
+            sx={Style.confirmButton(isArabic)}
+            color={"secondary"}
+            buttonText={t("payment_summary_page.confirm")}
+            loading={loader}
+            disable={loader}
+          />
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+export default PaymentSummaryPlain;

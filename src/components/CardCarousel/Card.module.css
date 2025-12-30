@@ -1,0 +1,42 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 470px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.css-1fzpoyk1 {
+  animation: slideLeft 0.3s ease-in-out;
+}
+.css-1fzpoyk2 {
+  animation: slideRight 0.3s ease-in-out;
+}
+.css-1fzpoyk3 {
+  animation: slideRight 0.3s ease-in-out;
+}
+@keyframes slideLeft {
+  /* from {
+    transform: translateX(0);
+  } */
+  100% {
+    transform: translateY(-50%) translateX(-75%) scale(0.8);
+  }
+}
+
+@keyframes slideDown {
+  /* from {
+    transform: translateY(0) translateX(-50%) scale(0.8);
+  } */
+  100% {
+    transform: translateY(-50%) translateX(28%) scale(0.8);
+  }
+}
+
+@keyframes slideRight {
+  100% {
+    transform: translateY(-50%) translateX(129%) scale(0.8);
+  }
+}

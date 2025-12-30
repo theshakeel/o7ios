@@ -1,0 +1,17 @@
+{
+  "appId": "com.o7events.app",
+  "appName": "o7events",
+  "webDir": "build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1000,
+      "launchAutoHide": false,
+      "backgroundColor": "#131e22",
+      "androidSplashResourceName": "splash_logo"
+    }
+  },
+  "android": {
+  "webContentsDebuggingEnabled": true,
+  "windowSoftInputMode": "adjustResize"
+}
+}

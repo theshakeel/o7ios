@@ -1,0 +1,151 @@
+{
+  "translation": {
+    "navbar": {
+      "createEvent":"Create an Event",
+      "input": "Search for an event...",
+      "login": "Login",
+      "hello_guest": "hello guest",
+      "welcome_message": "Welcome to O7 events",
+      "sign_in": "Sign In",
+      "location": "Location to"
+    },
+    "drawer": {
+      "createEvent":"Create an Event",
+      "home": "Home",
+      "my_profile": "My Profile",
+      "my_tickets": "My Tickets",
+      "my_favorites": "My Favorites",
+      "change_language": "Language",
+      "location": "Location",
+      "sign_out": "Sign Out"
+    },
+    "home_page": {
+      "start_from": "Start From"
+    },
+    "event_detail_page": {
+      "buy_ticket": "Buy Ticket",
+      "share": "Share",
+      "save": "Save",
+      "gallery": "Gallery",
+      "about": "About",
+      "time": "Time",
+      "saved": "Saved",
+      "starts_from": "Starts From",
+      "guests_attendees": "Guests & Attendees",
+      "partners": "Partners",
+      "terms_condition": "Terms & Conditions",
+      "ticket_price": "Price Starts",
+      "free": "Free"
+    },
+    "my_ticket_page": {
+      "my_tickets": "My Tickets",
+      "coming": "Coming",
+      "expired": "Expired",
+      "no_tickets_yet": "No tickets yet!",
+      "no_ticket_message": "You don’t have any tickets now. Your owned tickets will appear here."
+    },
+    "payment_summary_page": {
+      "amount_fees":"Process fees",
+      "amount_fees_per":"Process fees per ticket",
+      "payment_summary": "Payment Summary",
+      "please_complete": "Please complete your payment within",
+      "please_complete_chat": "Purchase Monthly Based Subscription to use unlimited live chat with in just {{price}}",
+      "event": "Event",
+      "ticket_no": "Number of Tickets",
+      "amount": "Amount",
+      "select_payment": "Select Payment Method",
+      "credit_card": "Credit Card",
+      "knet": "knet",
+      "google_pay": "Google pay",
+      "apple_pay": "Apple pay",
+      "discount_code": "Discount Code",
+      "discount_code_coupon": "Discount Code (coupon)",
+      "by_tapping": "By tapping “Confirm” you agree on",
+      "terms_condition": "Terms & Conditions",
+      "confirm": "Confirm",
+      "apply": "Apply",
+      "discountMessage": "First Apply the coupon before confirm"
+    },
+    "ticket_status_page": {
+      "thank_you": "Thank You!",
+      "failure": "Failure",
+      "payment_positive_status": "Your payment is paid successfully and you can find your ticket in your profile.",
+      "payment_negative_status": "Something wrong happened during your payment. Please try again later.",
+      "payment_positive_status_sub": "Thank you for subscribing you can now continue chatting privately.",
+      "button_text_positive": "My Tickets",
+      "button_text_negative": "View My Tickets",
+      "try_again": "Try Again",
+      "home": "Back To Home"
+    },
+    "buy_ticket_modal": {
+      "select_tickets": "Select Tickets",
+      "select_tickets_para": "Please select the ticket(s) you want to buy and continue the process.",
+      "checkout": "Checkout",
+      "total": "Total"
+    },
+    "profile_modal": {
+      "edit_profile": "Edit Profile",
+      "complete_profile": "Complete Profile",
+      "complete_heading": "Please enter your personal information to complete your profile",
+      "update_heading": "Update your personal information of your profile",
+      "enter_full_name": "Enter Full Name",
+      "full_name": "Full Name",
+      "enter_email_address": "Enter Email Address",
+      "email_address": "Email Address",
+      "password": "Password",
+      "enter_password": "Enter Password",
+      "required": "Required!",
+      "country_optional": "Country (Optional)",
+      "birth_optional": "Birth Date (Optional)",
+      "confirm": "Confirm"
+    },
+    "mobile_no_modal": {
+      "mobile_no": "Mobile Number",
+      "enter_mobile_no": "Enter Mobile Number",
+      "heading": "Please enter your mobile number.",
+      "verification_text": "We will send your verification code (OTP) via",
+      "sms": "SMS",
+      "call": "CALL",
+      "continue": "Continue",
+      "employee": "Employee",
+      "employee_heading": "Please enter your email and password"
+    },
+    "ticketqr_modal": {
+      "ticket_detail": "Ticket Details",
+      "ticket_by": "Ticket By O7 Agency"
+    },
+    "verify_account_modal": {
+      "verify": "Verify",
+      "verify_account": "Verify Account",
+      "enter_otp": "Please enter the OTP code sent to your Email",
+      "not_get_code": "Didn’t get your code yet?",
+      "send_again": "Send again in",
+      "resend_otp": "Resend OTP Code",
+      "sms": "SMS",
+      "or": "or"
+    },
+    "helper": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    },
+    "share_event": {
+      "copy_link": "copy Link",
+      "with_facebook": "with Facebook",
+      "with_twitter": "with Twitter",
+      "with_email": "with Email",
+      "with_telegram": "with Telegram",
+      "with_linkedin": "with Linked in",
+      "with_whatsapp": "with Whatsapp"
+    }
+  }
+}

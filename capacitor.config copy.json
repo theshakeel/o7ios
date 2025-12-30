@@ -1,0 +1,39 @@
+{
+  "appId": "com.o7events.app",
+  "appName": "o7events",
+  "webDir": "build",
+  "server": {
+    "url": "http://10.133.14.81:3000",
+    "cleartext": true
+  },
+  "plugins": {
+    "SplashScreen": {
+  "launchShowDuration": 1000,
+  "launchAutoHide": false,
+  "backgroundColor": "#FFBA83",
+  "androidSplashResourceName": "splash_logo"
+}
+  },
+   "android": {
+  "webContentsDebuggingEnabled": true,
+  "windowSoftInputMode": "adjustResize"
+}
+}
+
+{
+  "appId": "com.o7events.app",
+  "appName": "o7events",
+  "webDir": "build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1000,
+      "launchAutoHide": false,
+      "backgroundColor": "#131e22",
+      "androidSplashResourceName": "splash_logo"
+    }
+  },
+  "android": {
+  "webContentsDebuggingEnabled": true,
+  "windowSoftInputMode": "adjustResize"
+}
+}

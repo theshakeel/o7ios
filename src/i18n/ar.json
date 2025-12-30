@@ -1,0 +1,151 @@
+{
+  "translation": {
+    "navbar": {
+      "createEvent":"إنشاء حدث",
+      "input": "...البحث عن ايفنت",
+      "login": "تسجيل الدخول",
+      "hello_guest": "حياك الله",
+      "welcome_message": "مرحبا بكم في OASI 7",
+      "sign_in": "تسجيل الدخول",
+      "location": "الموقع ل"
+    },
+    "drawer": {
+      "home": "الرئيسية",
+      "my_profile": "ملف الشخصي",
+      "my_tickets": "تذاكري",
+      "createEvent":"إنشاء حدث",
+      "my_favorites": "مفضلتي",
+      "change_language": "لغة",
+      "location": "موقع",
+      "sign_out": "خروج"
+    },
+    "home_page": {
+      "start_from": "يبدأ من"
+    },
+    "event_detail_page": {
+      "buy_ticket": "اشتري تذكرة",
+      "share": "مشاركة",
+      "about": "عن",
+      "gallery": "معرض",
+      "save": "حفظ",
+      "time": "وقت",
+      "saved": "تم الحفظ",
+      "starts_from": "يبدأ من",
+      "guests_attendees": "الضيوف والحاضرين",
+      "partners": "الشركاء",
+      "terms_condition": "الشروط والاحكام",
+      "ticket_price": "سعر التذكرة يبدأ من",
+      "free": "حر"
+    },
+    "my_ticket_page": {
+      "my_tickets": "تذاكري",
+      "coming": "القادم",
+      "expired": "منتهي الصلاحية",
+      "no_tickets_yet": "لا توجد تذاكر بعد!",
+      "no_ticket_message": ".ليس لديك أي تذاكر الآن. ستظهر التذاكر الخاص بك هنا"
+    },
+    "payment_summary_page": {
+      "amount_fees":"رسوم العملية",
+      "amount_fees_per":"رسوم العملية لكل تذكرة",
+      "payment_summary": "ملخص الدفع",
+      "please_complete": "يرجى استكمال الدفع",
+      "please_complete_chat": "قم بشراء اشتراك شهري لاستخدام الدردشة المباشرة غير المحدودة مع جميع المستخدمين فقط بـ {{price}}",
+      "event": "ايفنت",
+      "ticket_no": "رقم التذكرة",
+      "amount": "الكمية",
+      "select_payment": "اختيار طريقة الدفع",
+      "credit_card": "بطاقة إئتمان",
+      "knet": "كي-نت",
+      "google_pay": "جوجول بي",
+      "apple_pay": "أبل بي",
+      "discount_code_coupon": "كود الخصم (الكوبون)",
+      "discount_code": "كود الخصم",
+      "by_tapping": "بالنقر على 'تأكيد'، فإنك توافق على ذلك",
+      "terms_condition": "شروط والاحكام",
+      "confirm": "تاكيد",
+      "apply": "يتقدم",
+      "discountMessage": "قم أولاً بتطبيق القسيمة قبل التأكيد"
+    },
+    "ticket_status_page": {
+      "thank_you": "شكرًا لك!",
+      "failure": "فشل",
+      "payment_positive_status": ".تم دفع الدفعة الخاصة بك بنجاح ويمكنك العثور على تذكرتك في ملفك الشخصي",
+      "payment_negative_status": "حدث خطأ أثناء الدفع. يرجى المحاولة مرة أخرى.",
+      "payment_positive_status_sub": "شكرًا لاشتراكك! يمكنك الآن متابعة الدردشة الخاصة.",
+      "button_text_positive": "تذاكري",
+      "button_text_negative": "عرض تذاكري",
+      "try_again": "حاول ثانية",
+      "home": "العودة إلى الصفحة الرئيسية"
+    },
+    "buy_ticket_modal": {
+      "select_tickets": "حدد التذاكر",
+      "select_tickets_para": ".يرجى تحديد التذكرة (التذاكر) التي ترغب في شرائها ومتابعة العملية",
+      "checkout": "الدفع",
+      "total": "المجموع"
+    },
+    "profile_modal": {
+      "edit_profile": "تعديل الملف الشخصي",
+      "complete_profile": "إكمال الملف الشخصي",
+      "complete_heading": "الرجاء إدخال معلوماتك الشخصية لإكمال ملفك الشخصي",
+      "update_heading": "قم بتحديث معلوماتك الشخصية في ملفك الشخصي",
+      "enter_full_name": "أدخل الاسم الكامل",
+      "full_name": "الاسم الكامل",
+      "enter_email_address": "أدخل عنوان البريد الإلكتروني",
+      "email_address": "عنوان البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "enter_password": "أدخل كلمة المرور",
+      "required": "!مطلوب",
+      "country_optional": "البلد (اختياري)",
+      "birth_optional": "تاريخ الميلاد (اختياري)",
+      "confirm": "تأكيد"
+    },
+    "mobile_no_modal": {
+      "mobile_no": "رقم الجوال",
+      "enter_mobile_no": "أدخل رقم الجوال",
+      "heading": "الرجاء إدخال رقم هاتفك الجوال.",
+      "verification_text": "سوف نرسل رمز التحقق الخاص بك",
+      "sms": "رسالة قصيرة",
+      "call": "اتصال بي",
+      "continue": "يكمل",
+      "employee": "الموظف",
+      "employee_heading": "الرجاء إدخال بريدك الإلكتروني وكلمة المرور"
+    },
+    "ticketqr_modal": {
+      "ticket_detail": "تفاصيل التذكرة",
+      "ticket_by": "تذكرة بواسطة OASI 7"
+    },
+    "verify_account_modal": {
+      "verify": "التحقق",
+      "verify_account": "التحقق من الحساب",
+      "enter_otp": "الرجاء إدخال رمز الذي تم إرساله إلى رقم هاتفك",
+      "not_get_code": "لم تحصل على رمزك بعد؟",
+      "send_again": "إعادة الإرسال في",
+      "resend_otp": "إعادة إرسال رمز ",
+      "sms": "رسالة نصية قصيرة",
+      "or": "أو"
+    },
+    "helper": {
+      "jan": "يناير",
+      "feb": "فبراير",
+      "mar": "مارس",
+      "apr": "أبريل",
+      "may": "مايو",
+      "jun": "يونيو",
+      "jul": "يوليو",
+      "aug": "أغسطس",
+      "sep": "سبتمبر",
+      "oct": "أكتوبر",
+      "nov": "نوفمبر",
+      "dec": "ديسمبر"
+    },
+    "share_event": {
+      "copy_link": "نسخ الرابط",
+      "with_facebook": "مع فيسبوك",
+      "with_twitter": "مع تويتر",
+      "with_email": "مع البريد الإلكتروني",
+      "with_telegram": "مع تليجرام",
+      "with_linkedin": "مع لينكد إن",
+      "with_whatsapp": "مع واتساب"
+    }
+  }
+}
