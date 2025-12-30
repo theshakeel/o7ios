@@ -75,8 +75,7 @@
     "build:run": "npx cap sync android && npx cap run android",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postinstall": "npm install --legacy-peer-deps"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
