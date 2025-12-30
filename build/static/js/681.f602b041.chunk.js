@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktickets_app=self.webpackChunktickets_app||[]).push([[681],{4681:(s,e,a)=>{a.r(e),a.d(e,{SplashScreenWeb:()=>p});var c=a(6653);class p extends c.Uw{async show(s){}async hide(s){}}}}]);
+//# sourceMappingURL=681.f602b041.chunk.js.map

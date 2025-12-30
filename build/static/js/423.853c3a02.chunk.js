@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktickets_app=self.webpackChunktickets_app||[]).push([[423],{2423:(e,t,s)=>{s.r(t),s.d(t,{SafeAreaWeb:()=>n});var a=s(6653);class n extends a.Uw{async getSafeAreaInsets(){return{insets:{top:0,left:0,right:0,bottom:0}}}async getStatusBarHeight(){return{statusBarHeight:0}}setImmersiveNavigationBar(){throw this.unimplemented("Method not supported on Web.")}unsetImmersiveNavigationBar(){throw this.unimplemented("Method not supported on Web.")}}}}]);
+//# sourceMappingURL=423.853c3a02.chunk.js.map
